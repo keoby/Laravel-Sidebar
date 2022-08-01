@@ -26,6 +26,7 @@ class DefaultMenu implements Menu, Serializable
      */
     protected $container;
 
+
     /**
      * Data that should be cached
      * @var array
@@ -118,5 +119,17 @@ class DefaultMenu implements Menu, Serializable
         }
 
         return $this;
+    }
+
+    public function __serialize():array
+    {
+        return [
+            'groups' => $this->groups,
+        ];
+    }
+
+    public function __unserialize(array $data): void
+    {
+        $this->groups = $data['groups'];
     }
 }
